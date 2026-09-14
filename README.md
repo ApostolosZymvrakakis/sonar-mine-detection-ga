@@ -36,6 +36,8 @@ Santos SSS release:
 | `cv_results.csv` | The raw 44-fold record: one row per fold per configuration. |
 | `santos_metadata.csv` | Per-image and per-annotation metadata (year, class, box width/height as % of image). Source of Figure 4.1. |
 | `holdout_groups.txt` | The 117 group identifiers of the locked hold-out set. |
+| `curves_FINAL_baseline.csv` | Per-epoch training record of the final baseline model. |
+| `curves_FINAL_ga.csv` | Per-epoch training record of the final GA-optimised model. |
 
 The four notebooks are Colab notebooks and expect the dataset as `santos_sss.zip`
 in Google Drive. They are self-contained: each rebuilds the augmented dataset and
@@ -57,6 +59,16 @@ python3 analysis_paired_tests.py cv_results.csv
 
 prints Table 4.2, Table 4.3, the three folds the baseline won, and the
 strict-IoU sub-sample. Requires `pandas`, `numpy`, `scipy`.
+
+## Reproducing the figures
+
+```bash
+Rscript figures_dissertation.R
+```
+
+reads `cv_results.csv`, `curves_FINAL_baseline.csv`, `curves_FINAL_ga.csv` and
+`santos_metadata.csv` from the working directory, writes five figures to
+`figures/` and `santos_eda_plots.png` beside the script. Requires `ggplot2`.
 
 ## Reproducing the split
 
@@ -93,5 +105,7 @@ cannot.
 ## Author
 
 Apostolos Zymvrakakis — Student ID 25126736
+
 MSc Artificial Intelligence, University of Plymouth
+
 Supervisor: Dr Vassilis Cutsuridis
